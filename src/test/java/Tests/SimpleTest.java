@@ -2,6 +2,7 @@ package Tests;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -11,6 +12,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pages.CalcPage;
 import pages.SearchPage;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SimpleTest {
@@ -29,26 +34,40 @@ public class SimpleTest {
         calcPage = new CalcPage(driver);
     }
 
-
+    @BeforeEach
+    public void setup(){
+        driver.get("https://google.com/");
+    }
 
     @Test
     public void test1() {
-
-        driver.get("https://google.com/");
         searchPage.search("калькулятор");
-        assertEquals(7, searchPage.results.size());
-
-
+        ArrayList<String> result = calcPage.getResult1();
+        assertAll(
+                () ->  assertEquals("(1 + 2) × 3 - 40 ÷ 5 =",result.get(0)),
+                () ->  assertEquals("1",result.get(1))
+        );
     }
 
     @Test
     public void test2() {
-        driver.get("https://google.com/");
         searchPage.search("калькулятор");
-        assertEquals("1",calcPage.getResult());
+        ArrayList<String> result = calcPage.getResult2();
+        assertAll(
+                () ->  assertEquals("6 ÷ 0 =",result.get(0)),
+                () ->  assertEquals("Infinity",result.get(1))
+        );
 
+    }
 
-
+    @Test
+    public void test3() {
+        searchPage.search("калькулятор");
+        ArrayList<String> result = calcPage.getResult3();
+        assertAll(
+                () ->  assertEquals("sin() =",result.get(0)),
+                () ->  assertEquals("Error",result.get(1))
+        );
     }
     @AfterAll
     public static void teardown() {

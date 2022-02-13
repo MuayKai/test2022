@@ -1,11 +1,10 @@
 package pages;
 
-import com.sun.tools.jconsole.JConsoleContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.openqa.selenium.support.PageFactory.initElements;
 
@@ -53,11 +52,20 @@ public class CalcPage {
     @FindBy(css = "div[jsname*='zLiRgc']")
     private WebElement resultText;
 
+    @FindBy(css = "div[jsname*='abcgof']")
+    private WebElement six;
+
+    @FindBy(css = "div[jsname*='aN1RFf']")
+    private WebElement sin;
+
+    @FindBy(css = "div[jsname*='VkJw6']")
+    private WebElement beforeResult;
+
     public CalcPage(WebDriver driver) {
         initElements(driver, this);
     }
 
-    public void apply() {
+    private void apply() {
         openClamp.click();
         one.click();
         plus.click();
@@ -70,10 +78,30 @@ public class CalcPage {
         zero.click();
         divide.click();
         five.click();
-        result.click();
     }
-    public String getResult() {
+
+    private ArrayList<String> getList() {
+        result.click();
+        ArrayList<String> result = new ArrayList<>();
+        result.add(beforeResult.getText());
+        result.add(resultText.getText());
+        return result;
+    }
+
+    public ArrayList<String> getResult1() {
         apply();
-        return resultText.getText();
+        return getList();
+    }
+
+    public ArrayList<String> getResult2() {
+        six.click();
+        divide.click();
+        zero.click();
+        return getList();
+    }
+
+    public ArrayList<String> getResult3() {
+        sin.click();
+        return getList();
     }
 }
