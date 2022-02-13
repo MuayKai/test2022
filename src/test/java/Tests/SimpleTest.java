@@ -1,9 +1,6 @@
 package Tests;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +44,8 @@ public class SimpleTest {
                 () ->  assertEquals("(1 + 2) × 3 - 40 ÷ 5 =",result.get(0)),
                 () ->  assertEquals("1",result.get(1))
         );
+
+
     }
 
     @Test
