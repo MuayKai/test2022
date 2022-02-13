@@ -27,7 +27,7 @@ public class SimpleTest {
     }
 
     @Test
-    public void test1() {
+    public void test1()  {
 
         driver.get("https://google.com/");
         searchPage.search("калькулятор");
