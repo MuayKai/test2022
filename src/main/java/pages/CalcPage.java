@@ -10,10 +10,10 @@ import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class CalcPage {
 
-    @FindBy(css = "[jsname*='j93WEe']")
+    @FindBy(css = "div[jsname*='j93WEe']")
     private WebElement openClamp;
 
-    @FindBy(css = "[jsname*='N10B9']")
+    @FindBy(css = "div[jsname*='N10B9']")
     private WebElement one;
 
     @FindBy(css = "div[jsname*='XSr6wc']")
