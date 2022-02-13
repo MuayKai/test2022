@@ -30,8 +30,8 @@ public class SimpleTest {
     public void test1() {
 
         driver.get("https://google.com/");
-        searchPage.search("selenium");
-        assertEquals(12, searchPage.results.size());
+        searchPage.search("калькулятор");
+        assertEquals(7, searchPage.results.size());
 
     }
     @AfterAll
